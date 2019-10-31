@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+{% if not user.is_authenticated %}
+  <p class = "center2"> Faça <a href = "{% url 'login' %}">login</a> e comece a cadastrar seus resumos! </p>
+{% else %}
+<p class = "center2"> Para cadastrar seu resumo, clique no item "cadastrar resumo" na aba de navegação acima. Caso queira filtrar para achar um assunto específico ou uma palavra-chave dentro do seu resumo, procure no filtro dentro do item "Lista de resumos" na aba de navegação acima.</p>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3 class = "center2"> Are you sure you want to delete this summary?</h3>
+<div class = "container">
+<form method="POST">{% csrf_token %}
+{{ form|crispy }}
+<div class = "center2">
+<button type="submit" class="btn btn-danger col-2" id = "cadastro">Confirm</button>
+<a class = "btn btn-primary col-2" href = "{% url 'summary_list' %}">No</a>
+</div>
+</div>
+{% endblock content %}

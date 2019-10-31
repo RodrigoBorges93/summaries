@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+<div class = "container">
+<form method="POST">{% csrf_token %}
+{{ form|crispy }}
+<div class = "center2">
+<button type="submit" class="btn btn-primary col-3" id = "cadastro">Save</button>
+</div>
+</div>
+{% else %}
+<h1> Faça <a href = "{% url 'login' %}"> login</a> primeiro</h1>
+{% endif %}
+{% endblock content %}

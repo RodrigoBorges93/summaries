@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<head>
+  <title>Cadastro</title>
+</head>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Cadastro</h5>
+<form method="POST">{% csrf_token %}
+{{ form|crispy }}
+</div>
+<div class = "center2">
+<button type="submit" class="btn btn-primary col-3" id = "cadastro">Save</button>
+<INPUT type = "reset" id = "cadastro" class = "btn btn-danger col-3" value = "Reset">
+</div>
+</form>
+</div>
+</div>
+</div>
+<br>
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% load staticfiles %}
+        <!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script src="https://use.fontawesome.com/releases/v5.8.2/css/all.css"></script>
+
+    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<ul class="navbar-nav">
+{% if not user.is_authenticated %}
+<li class="nav-item active">
+<a class = "nav-link" href = "{% url 'home' %}"> Home </a>
+</li>
+<li class="nav-item active">
+<a class = "nav-link" href = "{% url 'cadastro' %}"> Sign Up </a>
+</li>
+{% else %}
+<li class="nav-item active">
+<a class = "nav-link" href = "{% url 'home' %}"> Home </a>
+</li>
+ <li class="nav-item active">
+<a class = "nav-link" href = "{% url 'create_summary' %}"> Create Summary</a>
+</li>
+ <li class="nav-item active">
+<a class = "nav-link" href = "{% url 'summary_list' %}">Summary List</a>
+</li>
+
+
+{% endif %}
+</ul>
+
+{% if user.is_authenticated %}
+<ul class = "navbar-nav ml-auto border border-white">
+<li class="nav-item active">
+<a class = "nav-link" href = "{% url 'logout' %}">Logout</a>
+</li>
+</ul>
+
+
+{% else %}
+
+<ul class = "navbar-nav ml-auto border border-white">
+<li class="nav-item active">
+<a class = "nav-link" href = "{% url 'login' %}">Login</a>
+</li>
+</ul>
+
+{% endif %}
+</nav>
+ {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    {% block content %}{% endblock content %}
+</html>
