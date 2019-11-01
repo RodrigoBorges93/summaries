@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Summary model
 class Summary(models.Model):
     user = models.ForeignKey(User, on_delete = models.PROTECT)
     subject = models.CharField(max_length = 100, help_text = "Enter one or more subjects concerning your summary")
