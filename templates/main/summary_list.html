@@ -30,7 +30,7 @@
 <tr>
 <td class = "center2">{{user.first_name}} {{user.last_name}}</td>
 <td class = "center2">{{summary.subject}}</td>
-<td class = "center2">{{summary.summary}}</td>
+<td class = "center2">{{summary.summary|linebreaksbr}}</td>
 <td> <a href = "{% url 'summary_edit' summary.id %}" class= "btn btn-warning"> Edit </a></td>
 
 <td> <a href = "{% url 'summary_delete' summary.id %}" class= "btn btn-danger"> Delete </a></td>
