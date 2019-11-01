@@ -12,10 +12,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 
-# Create your views here.
+# index page
 def home(request):
     return render(request, 'main/index.html')
 
+
+# signup page
 def cadastro(request):
   if request.method == 'POST':
       form = SignUpForm(request.POST)
@@ -34,13 +36,17 @@ def cadastro(request):
     form = SignUpForm()
   return render(request, 'main/cadastro.html', {'form': form})
 
+
+# logout function
 def logout_view(request):
   logout(request)
   return redirect('home')
 
+#login page
 def logging(request):
   return render (request, "registration/login.html")
 
+# Page with a form to create summaries
 class Summarycreate(CreateView):
   model = Summary
   fields = ['subject', 'summary']
@@ -52,6 +58,7 @@ class Summarycreate(CreateView):
     obj.save()
     return redirect ('summary_list')
 
+# Page that will show all of the user's summaries, ordered by subject, in this page you can search an specific keyword
 class Summary_lista(ListView):
   model = Summary
   paginate_by = 10
@@ -68,6 +75,8 @@ class Summary_lista(ListView):
         queryset = Summary.objects.filter(user_id = self.request.user.id).order_by('subject')
       return queryset
 
+
+# Page to edit an existing summary
 class Summaryedit(UpdateView):
   model = Summary
   fields = ['subject', 'summary']
@@ -79,6 +88,8 @@ class Summaryedit(UpdateView):
   def get_success_url(self):
     return reverse ('summary_list')
 
+
+# Page to delete an existing summary
 class Summarydelete(DeleteView):
   model = Summary
 
